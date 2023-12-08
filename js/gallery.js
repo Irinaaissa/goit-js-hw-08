@@ -78,19 +78,47 @@ function createGalleryMarkup(images) {
     `;
   }).join('');
 }
+let instance;
+
+function onKeyDown(event) {
+    if (event.code === "Escape") {
+        instance.close();
+    }
+}
 
 galleryContainer.addEventListener('click', (event) => {
-  event.preventDefault();
- 
-  const clickOriginal = event.target.dataset.source;
-  if (clickOriginal) {
-    console.log(clickOriginal);
-    const myModal = basicLightbox.create(`
-      <img width="1400" height="900" src="${clickOriginal}">
-    `);
-    myModal.show();
-  }
+    event.preventDefault();
+
+    const clickOriginal = event.target.dataset.source;
+    if (clickOriginal) {
+        instance = basicLightbox.create(`
+            <img width="1400" height="900" src="${clickOriginal}">
+        `, {
+            onShow: () => {
+                window.addEventListener("keydown", onKeyDown);
+            },
+            onClose: () => {
+                window.removeEventListener("keydown", onKeyDown);
+            }
+        });
+        instance.show();
+    }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
