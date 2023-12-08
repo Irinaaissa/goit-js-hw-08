@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
-  }
+}
+
 ul {
     margin: 0;
     padding-left: 0;
@@ -16,11 +17,12 @@ ul {
     align-items: center;
     justify-content: center;
     gap: 24px;
-  }
-  img {
+}
+
+img {
 
     width: 360px;
     height: 200px;
-  
-  
-  }
+
+
+}
